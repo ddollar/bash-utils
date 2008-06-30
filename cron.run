@@ -1,0 +1,21 @@
+#!/bin/sh
+
+source "${DOT_BASH}/include/system.sh"
+
+PERIOD=${1}
+CRON_DIR="${DOT_BASH}/config/cron.d/${PERIOD}"
+
+if [ ! -d ${CRON_DIR} ]; then
+  exit 1
+fi
+
+case "${SYSTEM_BASE}" in
+  OSX) 
+    BIN_FINDER=$(find ${CRON_DIR} -type f -perm +u=x) ;;
+  Linux)
+    BIN_FINDER=$(find ${CRON_DIR} -type f -perm -u=x) ;;
+esac
+
+for SCRIPT in ${BIN_FINDER}; do
+  source ${SCRIPT}
+done
