@@ -1,0 +1,3 @@
+script that powers my local cron.d folders
+
+~/.bash/config/cron.d/{hourly,daily,weekly,monthly}
